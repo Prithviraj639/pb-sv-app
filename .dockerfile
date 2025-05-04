@@ -1,0 +1,17 @@
+FROM node:22
+
+WORKDIR /app
+
+RUN git clone https://github.com/Prithviraj639/pb-sv-app.git .
+
+RUN npm install
+
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
+RUN  npm run db:push
+
+RUN npm run build
+
+CMD npm run start
+
